@@ -14,29 +14,20 @@
     <van-button type="default">默认按钮</van-button>
     <van-button type="warning">警告按钮</van-button>
     <van-button type="danger">危险按钮</van-button>
-
-    <van-cell is-link @click="showPopup">展示弹出层</van-cell>
-    <van-popup v-model:show="show">内容</van-popup>
+    <div class="box">hello world</div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
 export default {
-  name: 'app',
-  setup () {
-    const show = ref(false)
-    const showPopup = () => {
-      show.value = true
-    }
-    return {
-      show,
-      showPopup
-    }
-  }
+  name: 'app'
 }
 </script>
 
 <style lang="less">
-
+.box {
+  width: 750px;
+  height: 200px;
+  background-color: pink;
+}
 </style>
