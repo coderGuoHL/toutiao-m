@@ -1,18 +1,22 @@
 <template>
-  <div class='login-container'>登录容器</div>
+  <div class=''></div>
 </template>
 
 <script>
 export default {
-  name: 'login',
+  name: '',
+  components: {},
+  props: {},
   data () {
     return {
     }
   },
 
-  components: {},
-
   computed: {},
+
+  watch: {},
+
+  created: {},
 
   mounted: {},
 
@@ -20,5 +24,5 @@ export default {
 }
 
 </script>
-<style lang='scss' scoped>
+<style lang='less' scoped>
 </style>
