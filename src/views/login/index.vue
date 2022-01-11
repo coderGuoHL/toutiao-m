@@ -3,12 +3,12 @@
     <van-nav-bar class="page-nav-bar" title="登录" />
     <van-form>
       <van-cell-group inset>
-        <van-field  v-model="phoneNo" name="手机号"  placeholder="手机号">\
+        <van-field  v-model="phoneNo" name="手机号"  placeholder="请输入手机号">\
           <template v-slot:left-icon>
             <i class="toutiao toutiao-shouji"></i>
           </template>
         </van-field>
-        <van-field v-model="verCode" name="验证码" placeholder="验证码">
+        <van-field v-model="verCode" name="验证码" placeholder="请输入验证码">
           <template v-slot:left-icon>
             <i class="toutiao toutiao-yanzhengma"></i>
           </template>
@@ -30,8 +30,8 @@ export default {
   props: {},
   data () {
     return {
-      phoneNo: '111',
-      verCode: '123'
+      phoneNo: '',
+      verCode: ''
     }
   },
 

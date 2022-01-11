@@ -83,6 +83,16 @@ Vant中默认使用`px`作为单位，如果需要使用`rem`单位，推荐使�
 
 #### 1.2 布局结构
 
+注意vue3中使用v-slot
+
+```vue
+ <template v-slot:left-icon>
+ 	<i class="toutiao toutiao-yanzhengma"></i>
+ </template>
+```
+
+
+
 #### 1.3 布局样式
 
 
