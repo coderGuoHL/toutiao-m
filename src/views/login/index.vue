@@ -1,5 +1,5 @@
 <template>
-  <div class=''></div>
+  <div class='login-container'>我是登录</div>
 </template>
 
 <script>
@@ -16,9 +16,9 @@ export default {
 
   watch: {},
 
-  created: {},
+  created () {},
 
-  mounted: {},
+  mounted () {},
 
   methods: {}
 }

@@ -6,11 +6,6 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/login')
-  },
-  {
-    path: '/data',
-    name: 'data',
-    component: () => import('@/views/data')
   }
 ]
 
