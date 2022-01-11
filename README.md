@@ -56,3 +56,8 @@ npm run build
 git config --global --unset http.proxy 
 git config --global --unset https.proxy
 ```
+
+### 网络没有问题但是代码提交或者拉取时报错443问题
+```
+git remote remove <name>
+```
