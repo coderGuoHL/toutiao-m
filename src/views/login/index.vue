@@ -37,8 +37,8 @@ export default {
   data () {
     return {
       user: {
-        mobile: '',
-        code: ''
+        mobile: '15274799830',
+        code: '123456'
       }
     }
   },
@@ -56,14 +56,25 @@ export default {
       // 获取表单数据
       const user = this.user
       console.log(this.user)
+
       // 表单请求
+      this.$toast.loading({
+        duration: 0,
+        forbidClick: true,
+        message: '倒计时 3 秒'
+      })
 
       // 提交表单请求登录
       try {
         const res = await login(user)
         console.log('登录成功', res)
+        this.$toast.success('登录成功')
       } catch (error) {
-        console.log(error)
+        if (error.errorCode === 400) {
+          console.log(error.errorMsg)
+        } else {
+          console.log('系统错误，请联系管理员')
+        }
       }
 
       // 根据响应结果处理后续
