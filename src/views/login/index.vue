@@ -1,20 +1,33 @@
 <template>
   <div class="login-container">
     <van-nav-bar class="page-nav-bar" title="登录" />
-    <van-form @submit="onSubmit">
+    <van-form ref="loginForm" @submit="onSubmit">
       <van-cell-group inset>
-        <van-field  v-model="user.mobile" name="phoneNo"  placeholder="请输入手机号">\
+        <van-field  v-model="user.mobile" name="mobile"  placeholder="请输入手机号" :rules="userFormRule.mobile">
           <template v-slot:left-icon>
             <i class="toutiao toutiao-shouji"></i>
           </template>
         </van-field>
-        <van-field v-model="user.code" name="verCode" placeholder="请输入验证码">
+        <van-field v-model="user.code" name="code" placeholder="请输入验证码" :rules="userFormRule.code" type="number" maxlength="6">
           <template v-slot:left-icon>
             <i class="toutiao toutiao-yanzhengma"></i>
           </template>
           |
           <template #button>
-            <van-button round class="send-sms-btn" size="mini" type="default">发送验证码</van-button>
+            <van-count-down
+              v-if="isCountDown"
+              :time="1000 * 3"
+              format="ss s"
+              @finish="isCountDown=false"
+            />
+            <van-button
+              round
+              v-else
+              class="send-sms-btn"
+              size="mini"
+              type="default"
+              @click="onSendSms"
+            >发送验证码</van-button>
           </template>
         </van-field>
       </van-cell-group>
@@ -39,7 +52,30 @@ export default {
       user: {
         mobile: '15274799830',
         code: '123456'
-      }
+      },
+      userFormRule: {
+        mobile: [
+          {
+            required: true,
+            message: '手机号不能为空'
+          },
+          {
+            pattern: /^1[3|5|7|8]\d{9}$/,
+            message: '手机号输入有误'
+          }
+        ],
+        code: [
+          {
+            required: true,
+            message: '验证码不能为空'
+          },
+          {
+            pattern: /^\d{6}$/,
+            message: '验证码输入有误'
+          }
+        ]
+      },
+      isCountDown: false
     }
   },
 
@@ -71,13 +107,27 @@ export default {
         this.$toast.success('登录成功')
       } catch (error) {
         if (error.errorCode === 400) {
-          console.log(error.errorMsg)
+          this.$toast.fail(error.errorMsg)
         } else {
-          console.log('系统错误，请联系管理员')
+          this.$toast.fail('系统错误，请联系管理员')
         }
       }
 
       // 根据响应结果处理后续
+    },
+    onSendSms () {
+      console.log('sendSms')
+      // 1.校验手机号
+      // 使用ref.loginForm 的validate单独校验
+      try {
+        this.$refs.loginForm.validate('mobile')
+      } catch (error) {
+        return console.log(error)
+      }
+      // 2.校验通过 按钮进入倒计时
+      this.isCountDown = true
+
+      // 3.发送实际验证码
     }
   }
 }
