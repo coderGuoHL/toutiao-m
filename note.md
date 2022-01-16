@@ -160,3 +160,16 @@ vscode配置vue的模板
 - 为了持久化，还需要把token存储到本地存储中
   - 持久化
 
+注意事项：localStorage中存储键值对是String-String的，若存储一个对象，则如果不手动转换为json格式，则存储[Obj]的格式
+
+![image-20220117010433355](C:\Users\Coder guo\AppData\Roaming\Typora\typora-user-images\image-20220117010433355.png)
+
+
+
+正确语法：
+
+```vue
+window.localStorage.setItem(TOKEN_KEY, JSON.stringify(data))
+
+```
+

@@ -91,7 +91,6 @@ export default {
     async onSubmit () {
       // 获取表单数据
       const user = this.user
-      console.log(this.user)
 
       // 表单请求
       this.$toast.loading({
@@ -103,8 +102,9 @@ export default {
       // 提交表单请求登录
       try {
         const res = await login(user)
-        console.log('登录成功', res)
+        // const { token } = res
         this.$toast.success('登录成功')
+        this.$store.commit('setUser', res)
       } catch (error) {
         if (error.errorCode === 400) {
           this.$toast.fail(error.errorMsg)
