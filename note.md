@@ -173,3 +173,6 @@ window.localStorage.setItem(TOKEN_KEY, JSON.stringify(data))
 
 ```
 
+
+
+#### 7、封装缓存数据方法
